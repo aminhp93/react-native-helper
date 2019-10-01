@@ -6,7 +6,7 @@ import Post from "./pages/post/Post";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Helper</Text>
+      <Text>Helper changed</Text>
       {/* <Stock /> */}
       <Post />
     </View>
