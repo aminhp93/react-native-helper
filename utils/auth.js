@@ -1,5 +1,6 @@
 import { Auth, Hub, Logger } from 'aws-amplify';
 import { getJson, setJson, removeAllItems } from './storage';
+import {AsyncStorage} from 'react-native';
 
 const AUTH_KEY = 'authentication';
 
@@ -118,8 +119,8 @@ bridge.onHubCapsule = (capsule) => {
   } else if (event === 'signOut') {
     // As the legacy Auth still exists, we need to clear all
     // auth data once Amplify Auth has signed out
-    localStorage.removeItem('outsight.authentication');
-    localStorage.removeItem('outsight.state');
+    AsyncStorage.removeItem('outsight.authentication');
+    AsyncStorage.removeItem('outsight.state');
     window.location.reload();
   }
   logger.info(capsule);

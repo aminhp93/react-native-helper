@@ -5,7 +5,7 @@ import ChatService from '../../services/Chat';
 
 export default class Chat extends React.Component {
     state = {
-
+        chatText: 'No message'
     }
 
     componentDidMount() {
@@ -20,12 +20,17 @@ export default class Chat extends React.Component {
 
     onMessage = (data, type) => {
         console.log(data, type)
+        if (type === 'SEND_MESSAGE') {
+            this.setState({
+                chatText: data.content
+            })
+        }
     }
 
     render() {
         return (
             <View>
-                <Text>Chat</Text>
+                <Text>{this.state.chatText}</Text>
             </View>
         )
     }

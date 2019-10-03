@@ -5,7 +5,8 @@ import Post from "./pages/post/Post";
 import Chat from "./pages/chat/Chat";
 import Amplify from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react-native';
-import { Buffer } from 'buffer'
+
+global.Buffer = global.Buffer || require('buffer').Buffer
 
 const cognito = {
   region: "us-west-2",
@@ -16,16 +17,15 @@ const cognito = {
 };
 
 Amplify.configure(cognito);
-// console.log(a)
 
 function App() {
   return (
     <View style={styles.container}>
-      <Text>Helper changed</Text>
+      {/* <Text>Helper changed</Text> */}
       {/* <Stock /> */}
       {/* <Post /> */}
       <Chat/>
-      <Text>Helper changed123</Text>
+      {/* <Text>Helper changed123</Text> */}
     </View>
   );
 }
