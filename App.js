@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 // import Stock from "./pages/stock/Stock";
 // import Post from "./pages/post/Post";
 // import Chat from "./src/pages/chat/Chat";
@@ -7,11 +7,18 @@ import Amplify from "aws-amplify";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 
 import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+
 import AuthLoadingScreen from "./src/components/screens/AuthLoadingScreen";
 import WelcomeScreen from "./src/components/screens/WelcomeScreen";
 import SignInScreen from "./src/components/screens/SignInScreen";
 import SignUpScreen from "./src/components/screens/SignUpScreen";
 import ForgetPasswordScreen from "./src/components/screens/ForgetPasswordScreen";
+import HomeScreen from "./src/components/screens/HomeScreen";
+import ProfileScreen from "./src/components/screens/ProfileScreen";
+import SettingsScreen from "./src/components/screens/SettingsScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const cognito = {
   region: "us-west-2",
@@ -64,10 +71,45 @@ const AuthStackNavigator = createStackNavigator({
   }
 });
 
+const AppTabNavigator = createBottomTabNavigator({
+  Home: {
+    screen: HomeScreen
+  },
+  Profile: {
+    screen: ProfileScreen
+  },
+  Settings: {
+    screen: SettingsScreen
+  }
+});
+
+const AppStackNavigator = createStackNavigator({
+  Header: {
+    screen: AppTabNavigator,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+          <View style={{ paddingHorrizontal: 10 }}>
+            <Ionicons size={24} name="md-menu" />
+          </View>
+        </TouchableOpacity>
+      )
+    })
+  }
+});
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Tabs: AppStackNavigator,
+  Home: HomeScreen,
+  Profile: ProfileScreen,
+  Settings: SettingsScreen
+});
+
 export default createAppContainer(
   createSwitchNavigator({
     AuthLoading: AuthLoadingScreen,
-    Auth: AuthStackNavigator
+    Auth: AuthStackNavigator,
+    App: AppDrawerNavigator
   })
 );
 
