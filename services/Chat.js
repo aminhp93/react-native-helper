@@ -12,6 +12,7 @@ const authPusher = async (channel, socketId) => {
     return request({
       method: 'POST',
       headers,
+      // mode: 'cors',
       data: {
         channel_name: channel.name,
         socket_id: socketId,
@@ -32,6 +33,7 @@ const authPusher = async (channel, socketId) => {
             try {
               console.log(32, socketId)
               const response = await authPusher(channel, socketId);
+              console.log(35, response)
               callback(false, { ...response.data });
             } catch (err) {
               console.log(36, err)
@@ -92,7 +94,7 @@ const ChatService = {
         const channel = socket.subscribe(`private-data_conversation_${conversationId}`);
         if (channel) {
           subscribedDataChannels.add(conversationId);
-          console.log(socket, subscribedDataChannels)
+          console.log(97, socket, subscribedDataChannels)
           channel.bind(ChatEventType.SEND_MESSAGE, (data) => {
             console.log(data, 94)
             chatObserver.notify(data, ChatEventType.SEND_MESSAGE);

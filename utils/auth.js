@@ -21,11 +21,13 @@ class LegacyAuth {
   }
 
   isAuth() {
+    console.log(25)
     // TODO: return !!Auth.user;
     return !!(this.getToken());
   }
 
   getToken() {
+    console.log(31, this.data)
     // TODO: return Auth.user.getSignInUserSession().getIdToken().getJwtToken();
     return this.data && this.data.tokens && this.data.tokens.access;
   }

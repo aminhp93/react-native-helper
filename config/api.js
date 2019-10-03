@@ -7,13 +7,14 @@ const baseUrl = 'http://localhost:8000';
 
 export async function getHeaders() {
     try {
-      // const session = await Auth.currentSession();
-      // const token = await session.idToken.jwtToken;
-      const token = 'eyJraWQiOiJ3bXhFQVBuWUZGUmRzckM5cjAwZE5MVk50VHhsU1Q5bGVoeEhiZ2pUMG8wPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1NmViZDI3ZS04MmRhLTRkNTAtYjkzOS1lZDAyYzdhMjJlYjkiLCJjb2duaXRvOmdyb3VwcyI6WyJwbGF0Zm9ybV9kZXYiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX2FRemJNdDZvNyIsImNvZ25pdG86dXNlcm5hbWUiOiI1NmViZDI3ZS04MmRhLTRkNTAtYjkzOS1lZDAyYzdhMjJlYjkiLCJnaXZlbl9uYW1lIjoiTWluaCIsImN1c3RvbTpsaW5rZWRpbiI6Imh0dHBzOlwvXC93d3cubGlua2VkaW4uY29tXC9pblwvbWluaHBoYW05M1wvIiwiYXVkIjoiN2UwZjk5NHFpbmU3Y3E0bTBzdTJlNTc4bmUiLCJldmVudF9pZCI6IjBlYmYzODc0LWJhMmQtNDJlNi05MTZjLTM2MmMzYmJlMjFhMyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNTcwMDAzODAzLCJleHAiOjE1NzAwMTI5MDQsImlhdCI6MTU3MDAwOTMwNCwiZmFtaWx5X25hbWUiOiJQaGFtIiwiZW1haWwiOiJtaW5oQGluc2lnaHRkYXRhc2NpZW5jZS5jb20ifQ.o4eCaSe2-TzACYLA_TtlknOEUDIHgygH0Grtofe1_NPHfUjicD3xRKvRvsAz9vkDjrgEtCVMrP7W5aIQiAPAR3We0skstu-dMMaySFbquX5jBgeo5Ixhs4b3Xw2USMWAvSjsUYvMKdBYDWoe3laWWxSlcZfE557UbkBvZQThJpyMKurpjzEwsCuhaAxElCFIKkJ_k7N3uHqBm0gU04AJwLEwqCZrE4dJCuIIrdpgeYP7IohDy_rxb0RZnp2fsl2xojhj5aIgxqEEDnybwDN4sW8MlSyTD1fsxCvic2lwsCEKwBlM8ezF9grzf-DnRR56zpR7Zv6gFjWBkua67Vm57A'
+      console.log(10, PlatformAuth.isAuth())
+      const session = await Auth.currentSession();
+      const token = await session.idToken.jwtToken;
+      // const token = 'eyJraWQiOiJ3bXhFQVBuWUZGUmRzckM5cjAwZE5MVk50VHhsU1Q5bGVoeEhiZ2pUMG8wPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1NmViZDI3ZS04MmRhLTRkNTAtYjkzOS1lZDAyYzdhMjJlYjkiLCJjb2duaXRvOmdyb3VwcyI6WyJwbGF0Zm9ybV9kZXYiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX2FRemJNdDZvNyIsImNvZ25pdG86dXNlcm5hbWUiOiI1NmViZDI3ZS04MmRhLTRkNTAtYjkzOS1lZDAyYzdhMjJlYjkiLCJnaXZlbl9uYW1lIjoiTWluaCIsImN1c3RvbTpsaW5rZWRpbiI6Imh0dHBzOlwvXC93d3cubGlua2VkaW4uY29tXC9pblwvbWluaHBoYW05M1wvIiwiYXVkIjoiN2UwZjk5NHFpbmU3Y3E0bTBzdTJlNTc4bmUiLCJldmVudF9pZCI6IjBlYmYzODc0LWJhMmQtNDJlNi05MTZjLTM2MmMzYmJlMjFhMyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNTcwMDAzODAzLCJleHAiOjE1NzAwODI5MjQsImlhdCI6MTU3MDA3OTMyNCwiZmFtaWx5X25hbWUiOiJQaGFtIiwiZW1haWwiOiJtaW5oQGluc2lnaHRkYXRhc2NpZW5jZS5jb20ifQ.rQX8suG_qtUUHrFPyybnSPsYvuBDlq8MjSKWCMCIqwlMLNCz-9wKqK6W9HhbcqI3kP2EUEwMBvONTupnykWm4ogi6rjYmNNdW9EABSBy9xBA8IkfKCG3EI5FfeBKdxgN--Nm3DHNmDdyw34-5C02XtWHOYnWRPIrb9K5NJ5bD-z7w6N-vuRvi1ESvARfO9fWQ0wM3hW0LkGATMjPOzWOIDaSYShCQIEPuOHuyZLlcqAPYwZ26YEULZe8xcTr3YXExW9s6Eo6WNWXIcOCybCsIOsqoz3qQr8UjL9_wNDaKyu9SKG2LWXAdq4WCzEBPO49S4YoEacb51TBMEgBYyj2HA'
       return {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: PlatformAuth.isAuth() ? `Bearer ${token}` : `Bearer ${token}`,
+        'Accept': 'application/json',
+        'Authorization': PlatformAuth.isAuth() ? `Bearer ${token}` : '',
       }
     } catch (err) {
       // eslint-disable-next-line

@@ -9,8 +9,13 @@ export default class Chat extends React.Component {
     }
 
     componentDidMount() {
-        ChatService.subscribeToDataChannel(35)
-        ChatService.getChatObserver().subscribe(this.onMessage)
+        Auth.signIn('minh@insightdatascience.com', 'Miamikki521')
+            .then(() => {
+                console.log('success')
+                ChatService.subscribeToDataChannel(35)
+                ChatService.getChatObserver().subscribe(this.onMessage)
+            })
+            .catch(error => console.log(error))
     }
 
     onMessage = (data, type) => {
