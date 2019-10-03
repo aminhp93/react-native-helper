@@ -1,4 +1,4 @@
-import Pusher from "pusher-js/react-native";
+// import Pusher from "pusher-js/react-native";
 // import Pusher from "pusher-js";
 import { omit } from "lodash";
 import { getHeaders, ChatUrls } from "../config/api";
