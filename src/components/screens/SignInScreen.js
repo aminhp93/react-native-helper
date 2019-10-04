@@ -4,13 +4,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   AsyncStorage,
   StatusBar,
   KeyboardAvoidingView,
   Keyboard,
   SafeAreaView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Animated,
 } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
@@ -21,23 +21,77 @@ import {
   Input
 } from 'native-base';
 
+const logo = require('../images/logo.png')
+
 export default class SignInScreen extends React.Component {
+  state = {
+    username: '',
+    password: '',
+    fadeIn: new Animated.Value(0),
+    fadeOut: new Animated.Value(0),  
+    isHidden: false
+  }
+
+  componentDidMount() {
+    this.fadeIn();
+  }
+
+  fadeIn = () => {
+    Animated.timing(this.state.fadeIn, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start()
+    this.setState({
+      isHidden: true
+    })
+  }
+
+  fadeOut = () => {
+    Animated.timing(this.state.fadeOut, {
+      toValue: 0,
+      duration: 700,
+      useNativeDriver: true
+    }).start()
+    this.setState({
+      isHidden: false
+    })
+  }
+
   signIn = async () => {
     await AsyncStorage.setItem("userToken", "123456789");
     this.props.navigation.navigate("AuthLoading");
   };
 
-  onChangeText = () => {
-
+  onChangeText = (key, value) => {
+    this.setState({
+      [key]: value
+    })
   }
 
   render() {
+    let { fadeOut, fadeIn, isHidden } = this.state
+
     return (      
       <SafeAreaView style={styles.container}>
         <StatusBar/>
         <KeyboardAvoidingView style={styles.container} behavior='padding' enabled>
           <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
             <View style={styles.container}>
+              {/* App logo */}
+              <View style={styles.logoContainer}>
+                {
+                  isHidden
+                  ? <Animated.Image
+                      source={logo}
+                      style={{ opacity: fadeIn, width: 160, height: 167 }}
+                    />
+                  : <Animated.Image
+                      source={logo}
+                      style={{ opacity: fadeIn, width: 120, height: 127 }}
+                    />
+                }
+              </View>
               <Container style={styles.infoContainer}>
                 <View style={styles.container}>
                   <Item style={styles.itemStyle} rounded>

@@ -1,11 +1,23 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { 
+  StyleSheet, 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  Image
+} from "react-native";
+
+const logo = require('../images/logo.png')
 
 export default class WelcomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Text>WelcomeScreen</Text>
+        <Image 
+          source={logo}
+          style={{ width: 110.46, height: 117 }}
+        />
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("SignUp")}
           style={styles.buttonStyle}

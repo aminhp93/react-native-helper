@@ -10,7 +10,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   SafeAreaView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Animated,
 } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
@@ -21,6 +22,9 @@ import {
   Input
 } from 'native-base';
 
+// Load the app logo
+const logo = require('../images/logo.png')
+
 export default class SignUpScreen extends React.Component {
   state = {
     phoneNumber: '',
@@ -28,14 +32,59 @@ export default class SignUpScreen extends React.Component {
     password: '',
     email: '',
     authCode: '',
+    fadeIn: new Animated.Value(0),  // Initial value for opacity: 0
+    fadeOut: new Animated.Value(1),  // Initial value for opacity: 1
+    isHidden: false
   }
+
+  componentDidMount() {
+    this.fadeIn();
+  }
+
+  fadeIn = () => {
+    Animated.timing(this.state.fadeIn, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start()
+    this.setState({
+      isHidden: true
+    })
+  }
+
+  fadeOut = () => {
+    Animated.timing(this.state.fadeOut, {
+      toValue: 0,
+      duration: 700,
+      useNativeDriver: true
+    }).start()
+    this.setState({
+      isHidden: false
+    })
+  }
+
   render() {
+    let { fadeOut, fadeIn, isHidden, flag } = this.state
+
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar/>
         <KeyboardAvoidingView style={styles.container} behavior='padding' enabled >
           <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
           <View style={styles.container}>
+            {/* App Logo */}
+            <View style={styles.logoContainer}>
+                {
+                  isHidden ?
+                  <Animated.Image 
+                    source={logo} 
+                    style={{ opacity: fadeIn, width: 110.46, height: 117 }}/>
+                  :
+                  <Animated.Image 
+                    source={logo} 
+                    style={{ opacity: fadeOut, width: 110.46, height: 117 }}/>
+                }
+              </View>
               <Container style={styles.infoContainer}>
                 <View style={styles.container}>
                   <Item rounded style={styles.itemStyle}>

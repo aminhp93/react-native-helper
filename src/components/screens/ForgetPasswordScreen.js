@@ -10,7 +10,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   SafeAreaView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Animated
 } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
@@ -20,8 +21,48 @@ import {
   Item,
   Input
 } from 'native-base';
+
+// Load the app logo
+const logo = require('../images/logo.png')
+
 export default class ForgetPasswordScreen extends React.Component {
+  state = {
+    username: '',
+    authCode: '',
+    newPassword: '',
+    fadeIn: new Animated.Value(0),  // Initial value for opacity: 0
+    fadeOut: new Animated.Value(1),  // Initial value for opacity: 1
+    isHidden: false
+  }
+
+  componentDidMount() {
+    this.fadeIn();
+  }
+
+  fadeIn = () => {
+    Animated.timing(this.state.fadeIn, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start()
+    this.setState({
+      isHidden: true
+    })
+  }
+
+  fadeOut = () => {
+    Animated.timing(this.state.fadeOut, {
+      toValue: 0,
+      duration: 700,
+      useNativeDriver: true
+    }).start()
+    this.setState({
+      isHidden: false
+    })
+  }
+
   render() {
+    let { fadeOut, fadeIn, isHidden, flag } = this.state
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar/>
@@ -32,6 +73,21 @@ export default class ForgetPasswordScreen extends React.Component {
           keyboardVerticalOffset={23}>
           <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
             <View style={styles.container}>
+              {/* App Logo */}
+              <View style={styles.logoContainer}>
+                {
+                  isHidden ?
+                  <Animated.Image 
+                    source={logo} 
+                    style={{ opacity: fadeIn, width: 160, height: 167 }}
+                  />
+                  :
+                  <Animated.Image 
+                    source={logo} 
+                    style={{ opacity: fadeOut, width: 160, height: 167 }}
+                  />
+                }
+              </View>
               {/* Infos */}
               <Container style={styles.infoContainer}>
                 <View style={styles.container}>
