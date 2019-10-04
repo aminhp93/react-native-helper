@@ -5,8 +5,21 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  AsyncStorage
+  AsyncStorage,
+  StatusBar,
+  KeyboardAvoidingView,
+  Keyboard,
+  SafeAreaView,
+  TouchableWithoutFeedback
 } from "react-native";
+
+import { Ionicons } from '@expo/vector-icons';
+
+import {
+  Container,
+  Item,
+  Input
+} from 'native-base';
 
 export default class SignInScreen extends React.Component {
   signIn = async () => {
@@ -14,13 +27,61 @@ export default class SignInScreen extends React.Component {
     this.props.navigation.navigate("AuthLoading");
   };
 
+  onChangeText = () => {
+
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.signIn} style={styles.buttonStyle}>
-          <Text style={styles.textStyle}>Complete signin screen</Text>
-        </TouchableOpacity>
-      </View>
+    return (      
+      <SafeAreaView style={styles.container}>
+        <StatusBar/>
+        <KeyboardAvoidingView style={styles.container} behavior='padding' enabled>
+          <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+              <Container style={styles.infoContainer}>
+                <View style={styles.container}>
+                  <Item style={styles.itemStyle} rounded>
+                    <Ionicons active name='ios-person' style={styles.iconStyle} />
+                    <Input
+                      style={styles.input}
+                      placeholder='Username'
+                      placeholderTextColor='#adb4bc'
+                      keyboardType={'email-address'}
+                      returnKeyType='next'
+                      autoCapitalize='none'
+                      autoCorrect={false}
+                      onSubmitEditing={e => {this.refs.SecondInput._root.focus()}}
+                      onChangeText={value => this.onChangeText('username', value)}
+                    />
+                  </Item>
+                  <Item rounded style={styles.itemStyle}>
+                    <Ionicons
+                      active
+                      name='lock'
+                      style={styles.iconStyle}
+                    />
+                    <Input
+                      style={styles.input}
+                      placeholder='Password'
+                      placeholderTextColor='#adb4bc'
+                      returnKeyType='go'
+                      autoCapitalize='none'
+                      autoCorrect={false}
+                      secureTextEntry={true}
+                      ref='SecondInput'
+                      onChangeText={value => this.onChangeText('password', value)}
+                    />
+                  </Item>
+                  <TouchableOpacity onPress={this.signIn} style={styles.buttonStyle}>
+                    <Text style={styles.textStyle}>Sign in </Text>
+                  </TouchableOpacity>
+                </View>
+                
+              </Container>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }
@@ -28,15 +89,56 @@ export default class SignInScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#aa73b7",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#aa73b7',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
+  input: {
+    flex: 1,
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#5a52a5',
+  },
+  infoContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 200,
+    bottom: 25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    backgroundColor: '#aa73b7',
+  },
+  itemStyle: {
+    marginBottom: 20,
+  },
+  iconStyle: {
+    color: '#5a52a5',
+    fontSize: 28,
+    marginLeft: 15
   },
   buttonStyle: {
-    padding: 20
+    alignItems: 'center',
+    backgroundColor: '#667292',
+    padding: 14,
+    marginBottom: 20,
+    borderRadius: 24,
   },
-  textStyle: {
+  buttonText: {
     fontSize: 18,
-    padding: 10
-  }
-});
+    fontWeight: 'bold',
+    color: "#fff",
+  },
+  logoContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 400,
+    bottom: 180,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+})

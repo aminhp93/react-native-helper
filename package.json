@@ -16,6 +16,7 @@
     "expo": "^35.0.0",
     "linkifyjs": "^2.1.8",
     "lodash": "^4.17.15",
+    "native-base": "^2.13.8",
     "pusher-js": "^5.0.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
