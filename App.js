@@ -18,6 +18,7 @@ import ForgetPasswordScreen from "./src/components/screens/ForgetPasswordScreen"
 import HomeScreen from "./src/components/screens/HomeScreen";
 import ProfileScreen from "./src/components/screens/ProfileScreen";
 import SettingsScreen from "./src/components/screens/SettingsScreen";
+import Stock from "./src/pages/stock/Stock";
 import { Ionicons } from "@expo/vector-icons";
 
 const cognito = {
@@ -101,6 +102,7 @@ const AppStackNavigator = createStackNavigator({
 const AppDrawerNavigator = createDrawerNavigator({
   Tabs: AppStackNavigator,
   Home: HomeScreen,
+  Stock: Stock,
   Profile: ProfileScreen,
   Settings: SettingsScreen
 });
