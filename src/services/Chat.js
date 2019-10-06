@@ -80,16 +80,36 @@ const subscribedDataChannels = new Set();
 
 const ChatService = {
   async createMessage(conversationId, message) {
-    const messageObj = JSON.parse('{"id":130,"creator":3573,"creator_profile":{"id":3573,"first_name":"Minh","last_name":"Pham","profile_image":"","full_name":"Minh Pham","is_removed":false,"is_active":true,"is_approved":true},"content":"213","conversation":103,"created":"2019-10-04T10:23:35.541557Z","params":null,"type":"USER_MESSAGE","mentions":[],"thread":null,"in_thread":null,"in_thread_detail":{"creator":null,"message":null,"reply_count":null,"last_participants":[]},"sub_type":null,"owner_profile":null,"users_profile":null,"parent":null,"files":[],"files_json":[]}')
+    const messageObj = {
+      id: "838aa2ed64da64a20a4f",
+      content: message,
+      files: [],
+      conversation: 103,
+      conversation_id: 103,
+      mentions: [],
+      creator_profile: {
+        id: 3573,
+        first_name: "Minh",
+        last_name: "Pham",
+        profile_image: "",
+        full_name: "Minh Pham",
+        is_removed: false,
+        is_active: true,
+        is_approved: true
+      },
+      created: "2019-10-06T03:52:17.366Z",
+      isSending: true,
+      creator: 3573
+    };
     return request({
-      method: 'POST',
+      method: "POST",
       headers: await getHeaders(),
       data: {
         ...messageObj,
         creator: 3573,
-        conversation: conversationId,
+        conversation: conversationId
       },
-      url: ChatUrls.createMessage(conversationId),
+      url: ChatUrls.createMessage(conversationId)
     });
   },
   getChatObserver() {
