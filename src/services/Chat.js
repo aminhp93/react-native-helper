@@ -25,7 +25,7 @@ const authPusher = async (channel, socketId) => {
 let baseSocket = null;
 const pusherSocket = async () => {
   if (!baseSocket) {
-    baseSocket = new Pusher("e369bb4610d1ca88007e", {
+    baseSocket = new Pusher("a3fda83202655e2402f1", {
       cluster: "us2",
       encrypted: true,
       enabledTransports: ["ws", "wss", "sockjs"],
@@ -81,25 +81,26 @@ const subscribedDataChannels = new Set();
 const ChatService = {
   async createMessage(conversationId, message) {
     const messageObj = {
-      id: "838aa2ed64da64a20a4f",
-      content: message,
-      files: [],
-      conversation: 103,
-      conversation_id: 103,
-      mentions: [],
-      creator_profile: {
-        id: 3573,
-        first_name: "Minh",
-        last_name: "Pham",
-        profile_image: "",
-        full_name: "Minh Pham",
-        is_removed: false,
-        is_active: true,
-        is_approved: true
-      },
-      created: "2019-10-06T03:52:17.366Z",
-      isSending: true,
-      creator: 3573
+      "id":"705d988c6d42e85696c9",
+      "content":message,
+      "files":[],
+      "conversation":46,
+      "conversation_id":46,
+      "mentions":[],
+      "creator_profile":
+        {
+          "id":3573,
+          "first_name":"Minh",
+          "last_name":"Pham",
+          "profile_image":"https://s3.us-east-2.amazonaws.com/insight-profile-images/a3c3b6c0-2dba-4d68-85d9-191f484cfacc/profile-image.jpg",
+          "full_name":"Minh Pham",
+          "is_removed":false,
+          "is_active":true,
+          "is_approved":true
+        },
+        "created":"2019-10-07T02:37:46.482Z",
+        "isSending":true,
+        "creator":3573
     };
     return request({
       method: "POST",

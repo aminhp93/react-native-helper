@@ -12,7 +12,7 @@ export default class Chat extends React.Component {
     Auth.signIn("minh@insightdatascience.com", "Miamikki521")
       .then(() => {
         console.log("success");
-        ChatService.subscribeToDataChannel(103);
+        ChatService.subscribeToDataChannel(46);
         ChatService.getChatObserver().subscribe(this.onMessage);
       })
       .catch(error => console.log(error));

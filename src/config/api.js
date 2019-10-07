@@ -5,7 +5,8 @@ import { buildParamList } from "../utils/url";
 
 // const baseUrl = 'http://localhost:8000';
 // const baseUrl = 'https://breezy-ape-33.localtunnel.me';
-const baseUrl = "https://api.insightdatastaging.com";
+// const baseUrl = "https://api.insightdatastaging.com";
+const baseUrl = "https://api.insightdata.com";
 
 export async function getHeaders() {
   try {

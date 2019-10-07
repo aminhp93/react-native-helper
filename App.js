@@ -21,13 +21,21 @@ import SettingsScreen from "./src/components/screens/SettingsScreen";
 import Stock from "./src/pages/stock/Stock";
 import { Ionicons } from "@expo/vector-icons";
 
+// const cognito = {
+//   region: "us-west-2",
+//   userPoolId: "us-west-2_ADCN3Ekv5",
+//   userPoolWebClientId: "dgrepsn2bmu4oe4qb7t83u8le",
+//   authenticationFlowType: "USER_PASSWORD_AUTH",
+//   identityPoolId: "us-west-2:23167bc9-5299-4d43-bb04-5d3cd42f4dab"
+// };
+
 const cognito = {
   region: "us-west-2",
-  userPoolId: "us-west-2_ADCN3Ekv5",
-  userPoolWebClientId: "dgrepsn2bmu4oe4qb7t83u8le",
-  authenticationFlowType: "USER_PASSWORD_AUTH",
-  identityPoolId: "us-west-2:23167bc9-5299-4d43-bb04-5d3cd42f4dab"
-};
+    userPoolId: "us-west-2_YQjC686Ww",
+    userPoolWebClientId: "1auchid2pbri4ol3o6q1n7gter",
+    authenticationFlowType: "USER_PASSWORD_AUTH",
+    identityPoolId: "us-west-2:c4aa356e-e75f-4d50-a9ce-938a2916dbfe",
+}
 
 Amplify.configure(cognito);
 
