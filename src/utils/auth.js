@@ -28,7 +28,7 @@ class LegacyAuth {
   }
 
   getToken() {
-    console.log(31, this.data)
+    // console.log(31, this.data)
     // TODO: return Auth.user.getSignInUserSession().getIdToken().getJwtToken();
     return this.data && this.data.tokens && this.data.tokens.access;
   }
@@ -88,9 +88,9 @@ window.Auth = Auth;
 // Amplify is asynchronous.
 // The callback is to force Promise running, wasn't intended to do
 // anything there.
-console.log(Auth);
+// console.log(Auth);
 Auth.currentAuthenticatedUser().then((res) => {
-  console.log(res)
+  // console.log(res)
   return true
 })
 .catch(error => console.log(error))

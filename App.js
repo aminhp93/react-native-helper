@@ -19,9 +19,10 @@ import HomeScreen from "./src/components/screens/HomeScreen";
 import ProfileScreen from "./src/components/screens/ProfileScreen";
 import SettingsScreen from "./src/components/screens/SettingsScreen";
 import Stock from "./src/pages/stock/Stock";
+import Post from "./src/pages/post/Post";
 import { Ionicons } from "@expo/vector-icons";
 
-// const cognito = {
+// const cognito = { 
 //   region: "us-west-2",
 //   userPoolId: "us-west-2_ADCN3Ekv5",
 //   userPoolWebClientId: "dgrepsn2bmu4oe4qb7t83u8le",
@@ -39,19 +40,6 @@ const cognito = {
 
 Amplify.configure(cognito);
 
-// function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Helper changed</Text>
-//       {/* <Stock /> */}
-//       {/* <Post /> */}
-//       {/* <Chat /> */}
-//       {/* <Text>Helper changed123</Text> */}
-//     </View>
-//   );
-// }
-
-// export default App;
 
 const AuthStackNavigator = createStackNavigator({
   Welcome: {

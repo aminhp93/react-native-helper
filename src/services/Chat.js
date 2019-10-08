@@ -32,12 +32,12 @@ const pusherSocket = async () => {
       authorizer: channel => ({
         authorize: async (socketId, callback) => {
           try {
-            console.log(32, socketId);
+            // console.log(32, socketId);
             const response = await authPusher(channel, socketId);
-            console.log(35, response);
+            // console.log(35, response);
             callback(false, { ...response.data });
           } catch (err) {
-            console.log(36, err);
+            // console.log(36, err);
             callback(true, err.status);
           }
         }
@@ -117,28 +117,28 @@ const ChatService = {
     return chatObserver;
   },
   async subscribeToDataChannel(conversationId) {
-    console.log(83, conversationId);
+    // console.log(83, conversationId);
     const socket = await pusherSocket();
-    console.log(socket);
+    // console.log(socket);
     const subscribed = socket.channel(
       `private-data_conversation_${conversationId}`
     );
 
     if (subscribed) return;
-    console.log(89, socket);
+    // console.log(89, socket);
     const channel = socket.subscribe(
       `private-data_conversation_${conversationId}`
     );
     if (channel) {
       subscribedDataChannels.add(conversationId);
-      console.log(97, socket, subscribedDataChannels);
+      // console.log(97, socket, subscribedDataChannels);
       channel.bind(ChatEventType.SEND_MESSAGE, data => {
-        console.log(data, 94);
+        // console.log(data, 94);
         chatObserver.notify(data, ChatEventType.SEND_MESSAGE);
       });
 
       channel.bind(ChatEventType.CREATE_THREAD, control => {
-        console.log(control, 99);
+        // console.log(control, 99);
         chatObserver.notify(control, ChatEventType.CREATE_THREAD);
       });
     }
