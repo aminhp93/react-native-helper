@@ -16,7 +16,7 @@
     "expo": "^35.0.0",
     "expo-linear-gradient": "~7.0.0",
     "linkifyjs": "^2.1.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "native-base": "^2.13.8",
     "pusher-js": "^5.0.2",
